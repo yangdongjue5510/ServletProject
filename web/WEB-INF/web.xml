@@ -7,4 +7,12 @@
         <param-name>encoding</param-name>
         <param-value>EUC-KR</param-value>
     </context-param>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>UpdateBoardCharacterEncodingFilter</filter-name>
+        <url-pattern>/updateBoard.do</url-pattern>
+    </filter-mapping>
 </web-app>

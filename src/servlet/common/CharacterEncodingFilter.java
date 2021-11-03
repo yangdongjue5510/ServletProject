@@ -10,8 +10,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
 
-@WebFilter(urlPatterns = "*.do", 
-           initParams = {@WebInitParam(name = "encoding", value = "EUC-KR"), 
+@WebFilter(filterName = "CharacterEncodingFilter",
+		urlPatterns = "*.do",
+           initParams = {@WebInitParam(name = "encoding", value = "UTF-8"),
         		         @WebInitParam(name = "message", value = "Hello!!!")})
 public class CharacterEncodingFilter implements Filter {
 	private String boardEncoding;
