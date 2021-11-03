@@ -12,7 +12,7 @@
         <url-pattern>*.do</url-pattern>
     </filter-mapping>
     <filter-mapping>
-        <filter-name>UpdateBoardCharacterEncodingFilter</filter-name>
-        <url-pattern>/updateBoard.do</url-pattern>
+        <filter-name>InsertBoardCharacterEncodingFilter</filter-name>
+        <url-pattern>/insertBoard.do</url-pattern>
     </filter-mapping>
 </web-app>

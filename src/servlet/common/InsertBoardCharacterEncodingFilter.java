@@ -5,12 +5,12 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
 import java.io.IOException;
 
-@WebFilter(filterName = "UpdateBoardCharacterEncodingFilter",
-        initParams = @WebInitParam(name = "encoding", value = "EUC-KR"))
-public class UpdateBoardCharacterEncodingFilter implements Filter {
+@WebFilter(filterName = "InsertBoardCharacterEncodingFilter",
+        initParams = @WebInitParam(name = "encoding", value = "UTF-8"))
+public class InsertBoardCharacterEncodingFilter implements Filter {
     private String boardEncoding;
-    public UpdateBoardCharacterEncodingFilter() {
-        System.out.println("===> UpdateBoardCharacterEncodingFilter created...");
+    public InsertBoardCharacterEncodingFilter() {
+        System.out.println("===> InsertBoardCharacterEncodingFilter created...");
     }
 
     @Override
