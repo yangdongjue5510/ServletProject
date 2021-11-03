@@ -2,7 +2,7 @@ package db;
 
 import java.sql.Date;
 
-public class UsersVO {
+public class UserVO {
     private String id;
     private String password;
     private String name;

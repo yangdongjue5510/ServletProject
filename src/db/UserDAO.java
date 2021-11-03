@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersDAO {
+public class UserDAO {
     private Connection conn;
     private PreparedStatement stmt;
     private ResultSet rs;
@@ -21,7 +21,7 @@ public class UsersDAO {
     private final String USERS_UPDATE_BY_ID = "update USERS set password = ? where id = ?";
 
     //CRUD
-    public void insertUser(UsersVO vo){
+    public void insertUser(UserVO vo){
         try{
             conn = JDBCUtil.getConnection();
             stmt = conn.prepareStatement(USERS_INSERT);
@@ -39,8 +39,8 @@ public class UsersDAO {
         }
     }
 
-    public UsersVO getUser(UsersVO vo) {
-        UsersVO user = null;
+    public UserVO getUser(UserVO vo) {
+        UserVO user = null;
         try {
             conn = JDBCUtil.getConnection();
             stmt = conn.prepareStatement(USERS_GET);
@@ -48,7 +48,7 @@ public class UsersDAO {
             stmt.setString(2, vo.getPassword());
             rs = stmt.executeQuery();
             if(rs.next()) {
-                user = new UsersVO();
+                user = new UserVO();
                 user.setId(rs.getString("ID"));
                 user.setPassword(rs.getString("PASSWORD"));
                 user.setName(rs.getString("NAME"));
@@ -64,15 +64,15 @@ public class UsersDAO {
         return user;
     }
 
-    public List<UsersVO> getUserList(){
-        List<UsersVO> usersList = new ArrayList<>();
+    public List<UserVO> getUserList(){
+        List<UserVO> usersList = new ArrayList<>();
         try{
             conn = JDBCUtil.getConnection();
             stmt = conn.prepareStatement(USERS_LIST);
             rs = stmt.executeQuery();
 
             while(rs.next()){
-                UsersVO user = new UsersVO();
+                UserVO user = new UserVO();
                 user.setId(rs.getString("ID"));
                 user.setId(rs.getString("PASSWORD"));
                 user.setId(rs.getString("NAME"));
@@ -89,7 +89,7 @@ public class UsersDAO {
         return usersList;
     }
 
-    public void updateUserById(UsersVO vo){
+    public void updateUserById(UserVO vo){
         try{
             conn = JDBCUtil.getConnection();
             stmt = conn.prepareStatement(USERS_UPDATE_BY_ID);
@@ -106,7 +106,7 @@ public class UsersDAO {
         }
     }
 
-    public void deleteUserById(UsersVO vo){
+    public void deleteUserById(UserVO vo){
         try{
             conn = JDBCUtil.getConnection();
             stmt = conn.prepareStatement(USERS_DELETE_BY_ID);
