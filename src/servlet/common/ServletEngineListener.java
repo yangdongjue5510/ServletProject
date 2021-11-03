@@ -1,0 +1,33 @@
+package servlet.common;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+
+public class ServletEngineListener implements ServletContextListener {
+
+    public ServletEngineListener() {
+        System.out.println("===> ServletEngineListener created");
+    }
+
+    public void contextInitialized(ServletContextEvent sce)  { 
+    	System.out.println("---> contextInitialized() called");
+    }
+    
+    public void contextDestroyed(ServletContextEvent sce)  { 
+    	System.out.println("---> contextDestroyed() destroyed");
+    }	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

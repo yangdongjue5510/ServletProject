@@ -19,7 +19,8 @@ public class LogoutServlet extends HttpServlet {
 		System.out.println("URI : " + request.getRequestURI());
 		System.out.println("protocol : " + request.getProtocol());
 		System.out.println("header(User-Agent) : " + request.getHeader("User-Agent"));
-		System.out.println(request.getParameter("id"));		
+		System.out.println(request.getParameter("id"));
+		response.sendRedirect("login.html");
 	}
 	
 

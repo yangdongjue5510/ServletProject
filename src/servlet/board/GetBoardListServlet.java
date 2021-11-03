@@ -20,7 +20,7 @@ public class GetBoardListServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String searchCondition = request.getParameter("searchCondition");
 		String searchKeyword = request.getParameter("searchKeyword");
-		System.out.println("searchCondition" + searchCondition);
+		System.out.println("searchCondition : " + searchCondition);
 		System.out.println("searchKeyword : " + searchKeyword);
 
 		BoardVO vo = new BoardVO();
@@ -39,7 +39,7 @@ public class GetBoardListServlet extends HttpServlet {
 		out.println("<body>");
 		out.println("<center>");
 		out.println("<h1>게시 글 목록</h1>");
-		out.println("<h3>"+request.getAttribute("userName")+"님 로그인 환영합니다...<a href='logout_proc.jsp'>LOG-OUT</a></h3>");
+		out.println("<h3>"+request.getAttribute("userName")+"님 로그인 환영합니다...<a href='logout.do'>LOG-OUT</a></h3>");
 		out.println("<!-- 검색 시작 -->");
 		out.println("<form action='getBoardList.do' method='post'>");
 		out.println("<table border='1' cellpadding='0' cellspacing='0' width='700'>");
@@ -68,7 +68,7 @@ public class GetBoardListServlet extends HttpServlet {
 		for(BoardVO board : boardList) {
 			out.println("<tr>");
 			out.println("<td>" + board.getSeq() + "</td>");
-			out.println("<td align='left'><a href='/ServletProject2_war_exploded/getBoard.do?seq="+board.getSeq()+"'>" + board.getTitle() + "</a></td>");
+			out.println("<td align='left'><a href='getBoard.do?seq="+board.getSeq()+"'>" + board.getTitle() + "</a></td>");
 			out.println("<td>" + board.getWriter() + "</td>");
 			out.println("<td>" + board.getRegDate() + "</td>");
 			out.println("<td>" + board.getCnt() + "</td>");
@@ -77,7 +77,7 @@ public class GetBoardListServlet extends HttpServlet {
 
 		out.println("</table>");
 		out.println("<br>");
-		out.println("<a href='/ServletProject2_war_exploded/insertBoard.html'>새글 등록</a>");
+		out.println("<a href='insertBoard.html'>새글 등록</a>");
 		out.println("</center>");
 		out.println("</body>");
 		out.println("</html>");
