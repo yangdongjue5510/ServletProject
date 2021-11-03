@@ -22,7 +22,8 @@ public class BoardDAO {
     private final String BOARD_UPDATE = "UPDATE board SET title = ?, content = ? where seq = ?";
     private final String BOARD_GET = "select * from board where seq = ?";
     private final String BOARD_LIST = "select * from board order by seq desc";
-
+    private final String BOARD_SEARCH_TITLE = "select * from board where title = ?";
+    private final String BOARD_SEARCH_CONTENT = "select * from board where content = ?";
 
     //BOARD 관련 CRUD create read update delete
     public BoardVO insertBoard(BoardVO vo){
@@ -110,16 +111,7 @@ public class BoardDAO {
             stmt = conn.prepareStatement(BOARD_LIST);
             rs = stmt.executeQuery();
             //출력
-            while(rs.next()) {//커서 이동(첫줄은 데이터가 없는 헤더) 읽을 데이터가 있으면 true 없으면 false
-                BoardVO board = new BoardVO();
-                board.setSeq(rs.getInt("SEQ"));
-                board.setTitle(rs.getString("TITLE"));
-                board.setContent(rs.getString("CONTENT"));
-                board.setWriter(rs.getString("WRITER"));
-                board.setCnt(rs.getInt("CNT"));
-                board.setRegDate(rs.getDate("REQDATE"));
-                boardVOList.add(board);
-            }
+            rsToList(boardVOList);
             System.out.println("getBoardList done.");
         } catch (Exception e) {
             e.printStackTrace();
@@ -127,5 +119,56 @@ public class BoardDAO {
             JDBCUtil.close(rs, stmt, conn);
         }
         return boardVOList;
+    }
+
+    public List<BoardVO> searchBoardTitle(String value){
+        List<BoardVO> boardVOList = new ArrayList<>();
+        try{
+            conn = JDBCUtil.getConnection();
+            stmt = conn.prepareStatement(BOARD_SEARCH_TITLE);
+            stmt.setString(1, value);
+
+            rs = stmt.executeQuery();
+            //출력
+            rsToList(boardVOList);
+            System.out.println("searchBoardTitle done.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            JDBCUtil.close(rs, stmt, conn);
+        }
+        return boardVOList;
+    }
+
+    public List<BoardVO> searchBoardContent(String value){
+        List<BoardVO> boardVOList = new ArrayList<>();
+        try{
+            conn = JDBCUtil.getConnection();
+            stmt = conn.prepareStatement(BOARD_SEARCH_CONTENT);
+            stmt.setString(1, value);
+
+            rs = stmt.executeQuery();
+            //출력
+            rsToList(boardVOList);
+            System.out.println("searchBoardContent done.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            JDBCUtil.close(rs, stmt, conn);
+        }
+        return boardVOList;
+    }
+
+    public void rsToList(List<BoardVO> boardVOList) throws SQLException{
+        while(rs.next()) {//커서 이동(첫줄은 데이터가 없는 헤더) 읽을 데이터가 있으면 true 없으면 false
+            BoardVO board = new BoardVO();
+            board.setSeq(rs.getInt("SEQ"));
+            board.setTitle(rs.getString("TITLE"));
+            board.setContent(rs.getString("CONTENT"));
+            board.setWriter(rs.getString("WRITER"));
+            board.setCnt(rs.getInt("CNT"));
+            board.setRegDate(rs.getDate("REQDATE"));
+            boardVOList.add(board);
+        }
     }
 }

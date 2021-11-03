@@ -25,7 +25,15 @@ public class GetBoardListServlet extends HttpServlet {
 
 		BoardVO vo = new BoardVO();
 		BoardDAO boardDAO = new BoardDAO();
-		List<BoardVO> boardList = boardDAO.getBoardList(vo);
+		List<BoardVO> boardList = null;
+
+		if(searchCondition==null){
+			boardList = boardDAO.getBoardList(vo);
+		}else if(searchCondition.equals("TITLE")){
+			boardList = boardDAO.searchBoardTitle(searchKeyword);
+		}else if(searchCondition.equals("CONTENT")){
+			boardList = boardDAO.searchBoardContent(searchKeyword);
+		}
 
 
 		response.setContentType("text/html;charset=EUC-KR");
