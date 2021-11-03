@@ -22,8 +22,8 @@ public class BoardDAO {
     private final String BOARD_UPDATE = "UPDATE board SET title = ?, content = ? where seq = ?";
     private final String BOARD_GET = "select * from board where seq = ?";
     private final String BOARD_LIST = "select * from board order by seq desc";
-    private final String BOARD_SEARCH_TITLE = "select * from board where title = ?";
-    private final String BOARD_SEARCH_CONTENT = "select * from board where content = ?";
+    private final String BOARD_SEARCH_TITLE = "select * from board where title like '%'||?||'%' order by seq desc";
+    private final String BOARD_SEARCH_CONTENT = "select * from board where content like '%'||?||'%' order by seq desc";
 
     //BOARD 관련 CRUD create read update delete
     public BoardVO insertBoard(BoardVO vo){

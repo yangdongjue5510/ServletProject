@@ -20,6 +20,8 @@ public class GetBoardListServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String searchCondition = request.getParameter("searchCondition");
 		String searchKeyword = request.getParameter("searchKeyword");
+		if(searchCondition == null) searchCondition="TITLE";
+		if(searchKeyword == null) searchKeyword="";
 		System.out.println("searchCondition : " + searchCondition);
 		System.out.println("searchKeyword : " + searchKeyword);
 
@@ -27,7 +29,7 @@ public class GetBoardListServlet extends HttpServlet {
 		BoardDAO boardDAO = new BoardDAO();
 		List<BoardVO> boardList = null;
 
-		if(searchCondition==null){
+		if(searchKeyword==""){
 			boardList = boardDAO.getBoardList(vo);
 		}else if(searchCondition.equals("TITLE")){
 			boardList = boardDAO.searchBoardTitle(searchKeyword);
